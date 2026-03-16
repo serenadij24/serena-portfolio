@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Serena Dijkhuizen — Portfolio</title>
+  <style>
+    :root{
+      --red: #e70000;
+      --white: #ffffff;
+      --dark-red: #a80000;
+      --brand-sans: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      --brand-serif: Georgia, 'Times New Roman', serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:#333;
+      background:#fff;
+      font-family:var(--brand-sans);
+      font-size:14px;
+      line-height:20px;
+      -webkit-text-size-adjust:100%;
+    }
+    a{color:var(--red);text-decoration:none}
+    a:focus{outline:3px solid rgba(231,0,0,0.15)}
+
+    .hero{
+      min-height:60vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:4rem 1rem;
+      color:var(--white);
+      text-align:center;
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25)), url("studiolinear.com_%20(1).png");
+      background-size:cover;
+      background-position:center;
+    }
+    .hero h1{
+      margin:0 0 .5rem 0;
+      font-family:var(--brand-serif);
+      font-size:40px;
+      letter-spacing:-0.03em;
+      font-weight:700;
+    }
+    .hero p{
+      margin:0 0 1rem 0;
+      font-size:18px;
+      line-height:1.6;
+      max-width:900px;
+    }
+    .actions{display:flex;gap:1rem;justify-content:center}
+    .btn{
+      display:inline-block;
+      padding:.7rem 1.1rem;
+      border-radius:8px;
+      background:var(--white);
+      color:#111;
+      box-shadow:0 6px 18px rgba(0,0,0,0.12), 0 3px 6px rgba(231,0,0,0.06);
+      transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .12s linear;
+    }
+    .btn:hover{transform:translateY(-3px)}
+    main{padding:2rem 1rem;max-width:980px;margin:0 auto}
+    .section{margin-bottom:2rem}
+    .meta{color:#666;font-size:13px}
+    .two-col{display:grid;grid-template-columns:1fr 320px;gap:2rem}
+    @media (max-width:860px){.two-col{grid-template-columns:1fr}} 
+
+    /* Resume link box */
+    .resume-box{padding:1rem;border-radius:8px;border:1px solid #eee;background:#fafafa}
+  </style>
+</head>
+<body>
+  <header class="hero" role="banner">
+    <div>
+      <h1>Serena Dijkhuizen</h1>
+      <p class="meta">Designer & Frontend Developer — portfolio and selected projects.</p>
+      <div class="actions">
+        <a class="btn" href="Serena_Dijkhuizen.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>About</h2>
+      <p>I build thoughtful digital experiences. This site references the attached resume — open the PDF for full details.</p>
+    </section>
+
+    <section class="section two-col">
+      <div>
+        <h3>Selected Work</h3>
+        <p>Project cards and descriptions would go here. Use the screenshot reference for exact layout and spacing.</p>
+      </div>
+      <aside>
+        <div class="resume-box">
+          <strong>Resume</strong>
+          <p class="meta">PDF attached in project root</p>
+          <p><a href="Serena_Dijkhuizen.pdf" target="_blank" rel="noopener">Open Resume</a></p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="contact">
+      <h3>Contact</h3>
+      <p class="meta">Email and social links can go here. Replace with your preferred contact details.</p>
+    </section>
+  </main>
+</body>
+</html>
