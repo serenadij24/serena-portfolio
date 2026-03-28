@@ -3,111 +3,178 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Serena Dijkhuizen — Portfolio</title>
+  <title>Serena Dijkhuizen — Design Leader</title>
   <style>
-    :root{
-      --red: #e70000;
-      --white: #ffffff;
-      --dark-red: #a80000;
-      --brand-sans: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-      --brand-serif: Georgia, 'Times New Roman', serif;
+    :root {
+      --base-bg: #f5f5f6;
+      --panel-bg: rgba(255, 255, 255, 0.88);
+      --text: #262626;
+      --muted: #7a7a7f;
+      --accent: #1b3b70;
+      --accent-soft: rgba(27, 59, 112, 0.08);
+      --shadow-1: 0 18px 45px rgba(15, 22, 39, 0.12);
+      --shadow-2: 0 8px 24px rgba(15, 22, 39, 0.08);
+      --brand-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --brand-sans: 'Work Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      color:#333;
-      background:#fff;
-      font-family:var(--brand-sans);
-      font-size:14px;
-      line-height:20px;
-      -webkit-text-size-adjust:100%;
-    }
-    a{color:var(--red);text-decoration:none}
-    a:focus{outline:3px solid rgba(231,0,0,0.15)}
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--base-bg); color: var(--text); }
+    body { font-family: var(--brand-sans); font-size: 16px; line-height: 1.65; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; transition: color .2s ease; }
+    a:hover, a:focus { color: #0f2479; }
+    a.hero-cta:hover, a.hero-cta:focus, a.hero-cta:active { color: #fff; }
+    button, .btn { font-family: var(--brand-sans); cursor: pointer; }
 
-    .hero{
-      min-height:60vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:4rem 1rem;
-      color:var(--white);
-      text-align:center;
-      background-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25)), url("studiolinear.com_%20(1).png");
-      background-size:cover;
-      background-position:center;
-    }
-    .hero h1{
-      margin:0 0 .5rem 0;
-      font-family:var(--brand-serif);
-      font-size:40px;
-      letter-spacing:-0.03em;
-      font-weight:700;
-    }
-    .hero p{
-      margin:0 0 1rem 0;
-      font-size:18px;
-      line-height:1.6;
-      max-width:900px;
-    }
-    .actions{display:flex;gap:1rem;justify-content:center}
-    .btn{
-      display:inline-block;
-      padding:.7rem 1.1rem;
-      border-radius:8px;
-      background:var(--white);
-      color:#111;
-      box-shadow:0 6px 18px rgba(0,0,0,0.12), 0 3px 6px rgba(231,0,0,0.06);
-      transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .12s linear;
-    }
-    .btn:hover{transform:translateY(-3px)}
-    main{padding:2rem 1rem;max-width:980px;margin:0 auto}
-    .section{margin-bottom:2rem}
-    .meta{color:#666;font-size:13px}
-    .two-col{display:grid;grid-template-columns:1fr 320px;gap:2rem}
-    @media (max-width:860px){.two-col{grid-template-columns:1fr}} 
+    .site-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    .top-nav { position: sticky; top: 1rem; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); border-radius: 999px; border: 1px solid rgba(15, 22, 39, 0.08); margin: 0 auto; padding: 0.65rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-family: var(--brand-serif); font-size: 1.05rem; font-weight: 700; letter-spacing: .02em; color: #1a1a1a; }
+    .nav-links { display: flex; gap: 1.1rem; font-size: .92rem; color: var(--muted); }
 
-    /* Resume link box */
-    .resume-box{padding:1rem;border-radius:8px;border:1px solid #eee;background:#fafafa}
+    .hero { min-height: 78vh; display: grid; place-items: center; text-align: center; padding: 5rem 0 4rem; background: linear-gradient(180deg, #ffffff 0%, #edeef0 52%, #e4e6e9 100%); }
+    .hero h1 { margin: 0; font-family: var(--brand-serif); font-size: clamp(2.4rem, 7vw, 5.2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; color: #08112d; }
+    .hero p.lead { margin: 1rem auto 2.2rem; font-size: clamp(1rem, 2.5vw, 1.35rem); max-width: 760px; color: var(--muted); }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; margin-top: 1rem; max-width: 820px; margin-left: auto; margin-right: auto; }
+    .card { border-radius: 24px; background: var(--panel-bg); border: 1px solid rgba(26, 39, 67, 0.08); box-shadow: var(--shadow-2); padding: 1.2rem; min-height: 350px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-1); }
+    .card strong { display: block; margin-bottom: .35rem; color: #161f35; font-size: 1rem; }
+    .card span { font-size: .86rem; color: #5f6370; }
+    .card .thumb { margin: .8rem 0 1rem; border-radius: 18px; overflow: hidden; height: 190px; background: radial-gradient(circle at 20% 20%, #fff, #f4f5f7 60%); border: 1px solid rgba(29,35,49,.08); }
+    .card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .card.logo-card .thumb { display: flex; align-items: center; justify-content: center; }
+    .card.logo-card .thumb img { width: auto; height: auto; max-width: 80%; max-height: 80%; object-fit: contain; }
+
+    .hero-cta { display: inline-block; padding: .82rem 1.8rem; border-radius: 999px; border: 1px solid #131c41; background: #101f45; color: #fff; box-shadow: 0 12px 26px rgba(15, 22, 39, .26); transition: transform .2s ease, box-shadow .2s ease; }
+    .hero-cta:hover, .hero-cta:focus { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(15, 22, 39, .34); background: #2a4f8f; border-color: #2a4f8f; color: #fff; }
+    .hero-cta:active { background: #3560a8; border-color: #3560a8; color: #fff; }
+
+    .section { padding: 4.5rem 0; border-bottom: 1px solid rgba(23, 28, 40, .07); }
+    .section-title { font-family: var(--brand-serif); font-size: clamp(1.4rem, 4vw, 2.25rem); letter-spacing: .01em; text-align: center; margin: 0 0 1.1rem; color: #121d37; }
+    .subtitle { text-align: center; margin: 0 auto 2rem; max-width: 680px; color: var(--muted); }
+
+    .podcast-list { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .pill { background: #fff; border: 1px solid rgba(23, 28, 40, .14); border-radius: 999px; padding: .5rem 1rem; display: inline-flex; font-size: .86rem; color: #252d45; box-shadow: 0 8px 20px rgba(15, 22, 39, .08); }
+
+    .essay-grid { display: grid; gap:.4rem; justify-content: center; margin: 1.8rem auto 0; max-width: 640px; }
+    .essay-item { font-family: var(--brand-serif); font-size: 1.28rem; line-height: 1.2; font-weight: 500; color: #1e2230; }
+
+    .newsletter { margin: 1rem auto 0; width: min(100%, 520px); background: rgba(255,255,255,.9); border-radius: 18px; border: 1px solid rgba(23,28,40,.12); box-shadow: var(--shadow-2); padding: 1.25rem; }
+    .newsletter form { display: flex; gap: .6rem; flex-wrap: wrap; align-items:center; }
+    .newsletter input { flex: 1 1 auto; min-width: 230px; padding: 0.8rem 1rem; border: 1px solid rgba(23,28,40,.15); border-radius: 8px; font-size: 0.95rem; }
+    .newsletter button { border:none; border-radius: 8px; padding:.78rem 1.15rem; color:#fff; background:#101f45; font-weight:600; }
+
+    .world-map { background-color: #f3f5f8; border-radius: 20px; border: 1px solid rgba(20, 28, 48, .09); padding: 2rem 1.1rem; margin-top: 1rem; text-align: center; }
+    .world-map .map { width:100%; max-width: 1040px; margin: 0 auto; display:block; }
+    .world-map p { max-width: 720px; margin: 1rem auto 0; color: var(--muted); }
+
+    .media-grid { display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-top: 1.3rem; }
+    .media-card { border-radius: 14px; overflow: hidden; border: 1px solid rgba(23, 28, 40, .12); background: #fff; box-shadow: var(--shadow-2); position: relative; }
+    .media-card img { width: 100%; height: 160px; object-fit: cover; }
+    .media-card.logo-card img { object-fit: contain; padding: 1.5rem; background: #f8f9fb; }
+    .media-card small { display: block; padding: .85rem .95rem 1rem; font-size: .85rem; color: var(--muted); }
+
+    .footer { background: #0f1320; color: #f5f7fc; padding: 2rem 0 3rem; text-align: center; }
+    .footer .logo { margin-bottom: 1rem; display: inline-block; padding: 0.35rem 0.8rem; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; font-weight:900; letter-spacing:.05em; }
+    .footer small { color: rgba(242, 247, 255, .66); }
+
+    @media (max-width: 980px) { .feature-grid { grid-template-columns: 1fr; } .media-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 640px) { .top-nav { top:.6rem; padding:.55rem .75rem; } .nav-links { gap:.7rem; font-size:.84rem; }
+      .hero { padding: 3.5rem 0 2.5rem; }
+      .media-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .section { padding: 3rem 0; }
+    }
   </style>
 </head>
 <body>
-  <header class="hero" role="banner">
-    <div>
-      <h1>Serena Dijkhuizen</h1>
-      <p class="meta">Designer & Frontend Developer — portfolio and selected projects.</p>
-      <div class="actions">
-        <a class="btn" href="Serena_Dijkhuizen.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a>
-        <a class="btn" href="#contact">Contact</a>
+  <div class="site-wrap">
+    <nav class="top-nav" aria-label="Primary navigation">
+      <div class="brand">Serena Dijkhuizen — Design Leader</div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#podcasts">Skills</a>
+        <a href="#essays">Education</a>
+        <a href="#speaking">Activities</a>
+        <a href="#contact">Contact</a>
       </div>
-    </div>
-  </header>
+    </nav>
 
-  <main>
-    <section class="section">
-      <h2>About</h2>
-      <p>I build thoughtful digital experiences. This site references the attached resume — open the PDF for full details.</p>
-    </section>
-
-    <section class="section two-col">
+    <section class="hero" id="work" aria-label="Hero statement">
       <div>
-        <h3>Selected Work</h3>
-        <p>Project cards and descriptions would go here. Use the screenshot reference for exact layout and spacing.</p>
-      </div>
-      <aside>
-        <div class="resume-box">
-          <strong>Resume</strong>
-          <p class="meta">PDF attached in project root</p>
-          <p><a href="Serena_Dijkhuizen.pdf" target="_blank" rel="noopener">Open Resume</a></p>
+        <h1>I drive eCommerce success through strategic marketing and merchandising.</h1>
+        <p class="lead">With a background in advertising and graphic design, I've led eCommerce operations, managed campaigns, and optimized online experiences for major brands.</p>
+
+        <div class="feature-grid">
+<article class="card logo-card" onclick="window.open('anomaly.html','_blank')">
+            <strong>Anomaly Productions</strong>
+            <span>Freelance Production Assistant | Mar 2023–Jan 2025</span>
+            <div class="thumb"><img src="anomaly-productions-logo.png" alt="Anomaly Productions"></div>
+          </article>
+          <article class="card" onclick="window.open('aob-senior.html','_blank')">
+            <strong>American Outdoor Brands</strong>
+            <span>Senior eCommerce Specialist | Jul 2024–Present</span>
+            <div class="thumb"><img src="AOB_logo.jpg" alt="American Outdoor Brands case study"></div>
+          </article>
         </div>
-      </aside>
+
+        <a class="hero-cta" href="Serena Dijkhuizen Resume.pdf" style="margin-top: 2.5rem;">View Resume</a>
+      </div>
     </section>
 
-    <section class="section" id="contact">
-      <h3>Contact</h3>
-      <p class="meta">Email and social links can go here. Replace with your preferred contact details.</p>
+    <section class="section" id="podcasts">
+      <h2 class="section-title">Skills</h2>
+      <p class="subtitle">Proficient in eCommerce platforms, marketing tools, and design software.</p>
+      <div class="podcast-list">
+        <span class="pill">Excel</span>
+        <span class="pill">Salesforce Commerce Cloud</span>
+        <span class="pill">Salesforce Marketing Cloud</span>
+        <span class="pill">Salesforce Page Designer</span>
+        <span class="pill">Adobe Illustrator</span>
+        <span class="pill">Adobe Photoshop</span>
+        <span class="pill">Adobe InDesign</span>
+        <span class="pill">Figma</span>
+        <span class="pill">Hootsuite Platform</span>
+        <span class="pill">Advanced Google Analytics Certified</span>
+        <span class="pill">Mobile Marketing Foundations</span>
+        <span class="pill">Shogun</span>
+        <span class="pill">Hive</span>
+        <span class="pill">Miro</span>
+      </div>
     </section>
-  </main>
+
+    <section class="section" id="essays">
+      <h2 class="section-title">Education</h2>
+      <div class="essay-grid">
+        <div class="essay-item">University of Florida</div>
+        <div class="essay-item">B.S, Advertising with Graphic Design Concentration</div>
+          <div class="essay-item">Cum Laude</div>
+            <div class="essay-item">University Scholars Program</div>
+      </div>
+    </section>
+
+    <section class="section" id="speaking">
+      <h2 class="section-title">Activities & Interests</h2>
+      <div class="world-map">
+        <p>Outside of work, I enjoy surfing, trivia, cooking, ceramics, and learning new skills.</p>
+      </div>
+
+      <div class="media-grid">
+        <article class="media-card"><img src="IMG_3659.jpeg" alt="Surfing"><small>Surfing</small></article>
+        <article class="media-card"><img src="trivia.jpg" alt="Trivia"><small>Trivia</small></article>
+        <article class="media-card"><img src="IMG_8921.jpeg" alt="Baking"><small>Baking</small></article>
+        <article class="media-card ceramics"><img src="pottery.jpg" alt="Ceramics"><small>Ceramics</small></article>
+        <article class="media-card logo-card"><img src="Claude_AI_symbol.svg" alt="Vibecoded"><small>Vibecoding: This Portfolio using Claude AI</small></article>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer" id="contact">
+    <div class="site-wrap">
+      <div class="logo">SD</div>
+      <p>Dana Point, CA | serenadij24@gmail.com | (850) 797 – 1097</p>
+      <small>© 2026 Serena Dijkhuizen · All rights reserved</small>
+    </div>
+  </footer>
 </body>
 </html>

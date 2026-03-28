@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anomaly Productions — Serena Dijkhuizen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #F8F4F0; color: #000; font-family: 'Work Sans', 'Helvetica Neue', Helvetica, sans-serif; font-size: 13px; line-height: 16px; }
+    img { max-width: 100%; display: block; border-radius: 5px; }
+    a { color: #000; text-decoration: none; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: flex-start; padding: 21px 24px; pointer-events: none; }
+    .nav a { pointer-events: all; font-size: 13px; font-weight: 500; }
+    .nav-back { opacity: 0.5; transition: opacity 0.2s; }
+    .nav-back:hover { opacity: 1; }
+    .nav-dot { display: inline-block; width: 16px; height: 16px; border-radius: 100%; background: #1b3b70; transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1); }
+    .nav-dot:hover { transform: scale(1.3); }
+
+    .columns { display: flex; flex-wrap: wrap; padding: 0 14px; width: 100%; }
+    .col { padding: 0 10px; }
+    .col-3 { width: 25%; }
+    .col-5 { width: 41.666%; }
+    .col-6 { width: 50%; }
+    .col-12 { width: 100%; }
+    .push-3 { margin-left: 25%; }
+
+    .intro { padding: 120px 0 115px; }
+    .case-title { margin-bottom: 40px; }
+    .stick-to-top { position: sticky; top: 60px; }
+    .stick-to-top p { font-size: 13px; line-height: 1.5; }
+    .intro h2 { font-size: 24px; line-height: 29px; font-weight: 400; }
+    .case-meta { margin-top: 64px; }
+    .case-meta p { font-size: 13px; line-height: 20px; opacity: 0.6; }
+
+    .blocks { margin-bottom: 120px; }
+    .blocks .col { margin-bottom: 20px; }
+    .media-block img { width: 100%; height: auto; }
+    .media-block:not(.natural-height) { height: 0; padding-bottom: 56.52%; position: relative; }
+    .media-block:not(.natural-height) img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+    .media-block.logo-block { display: flex; align-items: center; justify-content: center; padding: 80px 0; background: #fff; border-radius: 5px; }
+    .media-block.logo-block img { width: auto; max-width: 60%; border-radius: 0; }
+
+    .footer-back { border-top: 1px solid rgba(0,0,0,0.12); padding: 60px 0 80px; }
+    .footer-back a { font-size: 24px; font-weight: 400; opacity: 0.4; transition: opacity 0.2s; }
+    .footer-back a:hover { opacity: 1; }
+
+    .col { opacity: 0; transform: translateY(10px); animation: appear 0.5s forwards cubic-bezier(0.645, 0.045, 0.355, 1); }
+    .col:nth-child(1) { animation-delay: 0s; }
+    .col:nth-child(2) { animation-delay: 0.1s; }
+    .col:nth-child(3) { animation-delay: 0.15s; }
+    .col:nth-child(4) { animation-delay: 0.2s; }
+    @keyframes appear { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .col-3, .col-5, .col-6 { width: 100%; }
+      .push-3 { margin-left: 0; }
+      .intro { padding: 80px 0 60px; }
+      .stick-to-top { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-back">← Back</a>
+    <a href="index.html" class="nav-dot" aria-label="Home"></a>
+  </nav>
+
+  <main>
+    <section class="intro">
+      <div class="columns">
+        <div class="col col-3 push-3 case-title">
+          <div class="stick-to-top">
+            <p>Production Assistant<br>Anomaly Productions</p>
+          </div>
+        </div>
+        <div class="col col-5">
+          <h2>Supported production operations across a range of projects — coordinating logistics, managing on-set workflows, and ensuring smooth execution from pre-production through delivery.<br><br>
+          Worked closely with production teams to manage scheduling, communicate across departments, and keep projects on track under fast-paced, deadline-driven conditions.</h2>
+          <div class="case-meta">
+            <p>Company — Anomaly Productions</p>
+            <p>Role — Production Assistant</p>
+            <p>Period — Mar 2023–Jan 2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blocks">
+      <div class="columns">
+        <div class="col col-12">
+          <div class="media-block logo-block">
+            <img src="anomaly-productions-logo.png" alt="Anomaly Productions">
+          </div>
+        </div>
+        <div class="col col-6">
+          <div class="media-block natural-height" id="img-ref">
+            <img src="7017530.jpg" alt="Anomaly Productions">
+          </div>
+        </div>
+        <div class="col col-6">
+          <div id="img-crop" style="overflow:hidden;border-radius:5px;">
+            <img src="anomaly-img2.jpg" alt="Anomaly Productions" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+        </div>
+        <script>
+          window.addEventListener('load', function() {
+            var ref = document.getElementById('img-ref');
+            var crop = document.getElementById('img-crop');
+            crop.style.height = ref.offsetHeight + 'px';
+          });
+        </script>
+      </div>
+    </section>
+
+    <div class="footer-back">
+      <div class="columns">
+        <div class="col col-5 push-3">
+          <a href="index.html">← Back to portfolio</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
