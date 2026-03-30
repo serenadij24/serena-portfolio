@@ -3,39 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Serena Dijkhuizen — Design Leader</title>
+  <title>Serena Dijkhuizen — eCommerce Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --base-bg: #f5f5f6;
-      --panel-bg: rgba(255, 255, 255, 0.88);
-      --text: #262626;
+      --dark: #0b0b0b;
+      --medium: #515151;
+      --light: #757575;
       --muted: #7a7a7f;
       --accent: #1b3b70;
       --accent-soft: rgba(27, 59, 112, 0.08);
       --shadow-1: 0 18px 45px rgba(15, 22, 39, 0.12);
       --shadow-2: 0 8px 24px rgba(15, 22, 39, 0.08);
-      --brand-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      --brand-sans: 'Work Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      --panel-bg: rgba(255,255,255,0.88);
+      --brand-sans: 'Work Sans', Arial, 'Helvetica Neue', sans-serif;
+      --brand-display: 'Afacad', Arial, sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; height: 100%; background: var(--base-bg); color: var(--text); }
-    body { font-family: var(--brand-sans); font-size: 16px; line-height: 1.65; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #fff; color: var(--dark); }
+    body { font-family: var(--brand-sans); font-weight: 300; font-size: 16px; line-height: 1.65; }
     img { max-width: 100%; display: block; }
     a { color: var(--accent); text-decoration: none; transition: color .2s ease; }
     a:hover, a:focus { color: #0f2479; }
-    a.hero-cta:hover, a.hero-cta:focus, a.hero-cta:active { color: #fff; }
-    button, .btn { font-family: var(--brand-sans); cursor: pointer; }
 
-    .site-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-    .top-nav { position: sticky; top: 1rem; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); border-radius: 999px; border: 1px solid rgba(15, 22, 39, 0.08); margin: 0 auto; padding: 0.65rem 1rem; display: flex; justify-content: space-between; align-items: center; }
-    .brand { font-family: var(--brand-serif); font-size: 1.05rem; font-weight: 700; letter-spacing: .02em; color: #1a1a1a; }
-    .nav-links { display: flex; gap: 1.1rem; font-size: .92rem; color: var(--muted); }
+    /* ── Nav ── */
+    .top-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brand { font-family: var(--brand-sans); font-size: 0.95rem; font-weight: 500; color: var(--dark); }
+    .nav-links { display: flex; gap: 1.75rem; font-size: 0.88rem; color: var(--medium); }
+    .nav-links a { color: var(--medium); transition: color .2s; }
+    .nav-links a:hover { color: var(--dark); }
 
-    .hero { min-height: 78vh; display: grid; place-items: center; text-align: center; padding: 5rem 0 4rem; background: linear-gradient(180deg, #ffffff 0%, #edeef0 52%, #e4e6e9 100%); }
-    .hero h1 { margin: 0; font-family: var(--brand-serif); font-size: clamp(2.4rem, 7vw, 5.2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; color: #08112d; }
-    .hero p.lead { margin: 1rem auto 2.2rem; font-size: clamp(1rem, 2.5vw, 1.35rem); max-width: 760px; color: var(--muted); }
+    /* ── Hero ── */
+    .hero {
+      min-height: calc(100vh - 58px);
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: linear-gradient(160deg, #ffffff 0%, #f2fafb 55%, #e8f6f7 100%);
+    }
+    .hero-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 4rem 2rem 2rem;
+    }
+    .hero-greeting {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: var(--brand-sans); font-size: 1rem; font-weight: 300;
+      color: var(--dark); margin-bottom: 0.75rem;
+    }
+    .hero-greeting .sparkle { font-size: 1rem; }
 
-    .feature-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; margin-top: 1rem; max-width: 820px; margin-left: auto; margin-right: auto; }
+    /* Cycling text */
+    .hero-carousel { position: relative; width: 100%; max-width: 820px; height: 240px; }
+    .hero-slide {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 0.7s ease; pointer-events: none;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .hero-slide.active { opacity: 1; pointer-events: auto; }
+    .hero-slide .intro {
+      font-family: var(--brand-display); font-weight: 400;
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      color: var(--dark); line-height: 1.25;
+    }
+    .hero-slide .big {
+      font-family: var(--brand-display); font-weight: 400;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      color: var(--dark); line-height: 1.25;
+    }
+
+    /* Contact bar */
+    .hero-contact-bar {
+      padding: 1.4rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .contact-group-label {
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--medium); margin-bottom: 0.5rem; font-weight: 400;
+    }
+    .contact-items { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .contact-item {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--dark); font-size: 0.82rem; font-weight: 300;
+      transition: color .2s;
+    }
+    .contact-item:hover { color: #00959f; }
+    .contact-item svg { flex-shrink: 0; }
+    .contact-location {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      color: var(--medium); font-size: 0.82rem; font-weight: 300; align-self: flex-end;
+    }
+
+    /* ── Work section ── */
+    .site-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .work-section { padding: 4.5rem 0; border-bottom: 1px solid rgba(23, 28, 40, .07); }
+    .work-section-title { font-family: var(--brand-sans); font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 500; color: var(--dark); margin-bottom: 1.75rem; }
+
+    /* Cards — unchanged */
+    .feature-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; max-width: 820px; margin: 0 auto; }
     .card { border-radius: 24px; background: var(--panel-bg); border: 1px solid rgba(26, 39, 67, 0.08); box-shadow: var(--shadow-2); padding: 1.2rem; min-height: 350px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
     .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-1); }
     .card strong { display: block; margin-bottom: .35rem; color: #161f35; font-size: 1rem; }
@@ -45,83 +117,126 @@
     .card.logo-card .thumb { display: flex; align-items: center; justify-content: center; }
     .card.logo-card .thumb img { width: auto; height: auto; max-width: 80%; max-height: 80%; object-fit: contain; }
 
-    .hero-cta { display: inline-block; padding: .82rem 1.8rem; border-radius: 999px; border: 1px solid #131c41; background: #101f45; color: #fff; box-shadow: 0 12px 26px rgba(15, 22, 39, .26); transition: transform .2s ease, box-shadow .2s ease; }
-    .hero-cta:hover, .hero-cta:focus { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(15, 22, 39, .34); background: #2a4f8f; border-color: #2a4f8f; color: #fff; }
-    .hero-cta:active { background: #3560a8; border-color: #3560a8; color: #fff; }
-
+    /* ── Other sections ── */
     .section { padding: 4.5rem 0; border-bottom: 1px solid rgba(23, 28, 40, .07); }
-    .section-title { font-family: var(--brand-serif); font-size: clamp(1.4rem, 4vw, 2.25rem); letter-spacing: .01em; text-align: center; margin: 0 0 1.1rem; color: #121d37; }
-    .subtitle { text-align: center; margin: 0 auto 2rem; max-width: 680px; color: var(--muted); }
+    .section-title { font-family: var(--brand-sans); font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 500; text-align: center; margin: 0 0 1.1rem; color: var(--dark); }
+    .subtitle { text-align: center; margin: 0 auto 2rem; max-width: 680px; color: var(--muted); font-size: 0.92rem; }
 
     .podcast-list { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .pill { background: #fff; border: 1px solid rgba(23, 28, 40, .14); border-radius: 999px; padding: .5rem 1rem; display: inline-flex; font-size: .86rem; color: #252d45; box-shadow: 0 8px 20px rgba(15, 22, 39, .08); }
 
-    .essay-grid { display: grid; gap:.4rem; justify-content: center; margin: 1.8rem auto 0; max-width: 640px; }
-    .essay-item { font-family: var(--brand-serif); font-size: 1.28rem; line-height: 1.2; font-weight: 500; color: #1e2230; }
-
-    .newsletter { margin: 1rem auto 0; width: min(100%, 520px); background: rgba(255,255,255,.9); border-radius: 18px; border: 1px solid rgba(23,28,40,.12); box-shadow: var(--shadow-2); padding: 1.25rem; }
-    .newsletter form { display: flex; gap: .6rem; flex-wrap: wrap; align-items:center; }
-    .newsletter input { flex: 1 1 auto; min-width: 230px; padding: 0.8rem 1rem; border: 1px solid rgba(23,28,40,.15); border-radius: 8px; font-size: 0.95rem; }
-    .newsletter button { border:none; border-radius: 8px; padding:.78rem 1.15rem; color:#fff; background:#101f45; font-weight:600; }
+    .essay-grid { display: grid; gap: .4rem; justify-content: center; margin: 1.8rem auto 0; max-width: 640px; }
+    .essay-item { font-family: var(--brand-sans); font-size: 1.15rem; font-weight: 500; color: var(--dark); }
 
     .world-map { background-color: #f3f5f8; border-radius: 20px; border: 1px solid rgba(20, 28, 48, .09); padding: 2rem 1.1rem; margin-top: 1rem; text-align: center; }
-    .world-map .map { width:100%; max-width: 1040px; margin: 0 auto; display:block; }
-    .world-map p { max-width: 720px; margin: 1rem auto 0; color: var(--muted); }
-
-    .media-grid { display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-top: 1.3rem; }
-    .media-card { border-radius: 14px; overflow: hidden; border: 1px solid rgba(23, 28, 40, .12); background: #fff; box-shadow: var(--shadow-2); position: relative; }
+    .world-map p { max-width: 720px; margin: 0 auto; color: var(--muted); }
+    .media-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-top: 1.3rem; }
+    .media-card { border-radius: 14px; overflow: hidden; border: 1px solid rgba(23, 28, 40, .12); background: #fff; box-shadow: var(--shadow-2); }
     .media-card img { width: 100%; height: 160px; object-fit: cover; }
     .media-card.logo-card img { object-fit: contain; padding: 1.5rem; background: #f8f9fb; }
     .media-card small { display: block; padding: .85rem .95rem 1rem; font-size: .85rem; color: var(--muted); }
 
     .footer { background: #0f1320; color: #f5f7fc; padding: 2rem 0 3rem; text-align: center; }
-    .footer .logo { margin-bottom: 1rem; display: inline-block; padding: 0.35rem 0.8rem; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; font-weight:900; letter-spacing:.05em; }
+    .footer .logo { margin-bottom: 1rem; display: inline-block; padding: 0.35rem 0.8rem; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; font-weight: 900; letter-spacing: .05em; }
     .footer small { color: rgba(242, 247, 255, .66); }
 
-    @media (max-width: 980px) { .feature-grid { grid-template-columns: 1fr; } .media-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    @media (max-width: 640px) { .top-nav { top:.6rem; padding:.55rem .75rem; } .nav-links { gap:.7rem; font-size:.84rem; }
-      .hero { padding: 3.5rem 0 2.5rem; }
+    @media (max-width: 980px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 640px) {
+      .top-nav { padding: .75rem 1rem; }
+      .nav-links { gap: 1rem; font-size: .82rem; }
+      .hero-carousel { height: 270px; }
       .media-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2rem; }
       .section { padding: 3rem 0; }
+      .hero-contact-bar { padding: 1.2rem 1rem; }
     }
   </style>
 </head>
 <body>
-  <div class="site-wrap">
-    <nav class="top-nav" aria-label="Primary navigation">
-      <div class="brand">Serena Dijkhuizen — Design Leader</div>
-      <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#podcasts">Skills</a>
-        <a href="#essays">Education</a>
-        <a href="#speaking">Activities</a>
-        <a href="#contact">Contact</a>
+
+  <!-- Nav -->
+  <nav class="top-nav" aria-label="Primary navigation">
+    <div class="brand">Serena Dijkhuizen</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#podcasts">Skills</a>
+      <a href="#essays">Education</a>
+      <a href="#speaking">Activities</a>
+      <a href="#contact">Contact</a>
+      <a href="Serena Dijkhuizen Resume.pdf" target="_blank">Resume</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Hero statement">
+    <div class="hero-main">
+      <div class="hero-greeting">
+        Welcome! I'm Serena
       </div>
-    </nav>
 
-    <section class="hero" id="work" aria-label="Hero statement">
-      <div>
-        <h1>I drive eCommerce success through strategic marketing and merchandising.</h1>
-        <p class="lead">With a background in advertising and graphic design, I've led eCommerce operations, managed campaigns, and optimized online experiences for major brands.</p>
-
-        <div class="feature-grid">
-<article class="card logo-card" onclick="window.open('anomaly.html','_blank')">
-            <strong>Anomaly Productions</strong>
-            <span>Freelance Production Assistant | Mar 2023–Jan 2025</span>
-            <div class="thumb"><img src="anomaly-productions-logo.png" alt="Anomaly Productions"></div>
-          </article>
-          <article class="card" onclick="window.open('aob-senior.html','_blank')">
-            <strong>American Outdoor Brands</strong>
-            <span>Senior eCommerce Specialist | Jul 2024–Present</span>
-            <div class="thumb"><img src="AOB_logo.jpg" alt="American Outdoor Brands case study"></div>
-          </article>
+      <div class="hero-carousel">
+        <div class="hero-slide active">
+          <div class="big">I drive eCommerce success through strategic marketing and merchandising.</div>
         </div>
-
-        <a class="hero-cta" href="Serena Dijkhuizen Resume.pdf" style="margin-top: 2.5rem;">View Resume</a>
+        <div class="hero-slide">
+          <div class="big">I leverage my advertising and graphic design background to lead operations.</div>
+        </div>
+        <div class="hero-slide">
+          <div class="big">I manage campaigns, and optimize online experiences for major brands.</div>
+        </div>
       </div>
-    </section>
+    </div>
 
+    <div class="hero-contact-bar">
+      <div>
+        <div class="contact-group-label">Get in touch</div>
+        <div class="contact-items">
+          <a class="contact-item" href="mailto:serenadij24@gmail.com">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            serenadij24@gmail.com
+          </a>
+          <a class="contact-item" href="Serena Dijkhuizen Resume.pdf" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+            Resume
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/in/serena-dijkhuizen/" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+      <div class="contact-location">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Orange County, CA
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section class="work-section" id="work">
+    <div class="site-wrap">
+      <h2 class="work-section-title">Work</h2>
+      <div class="feature-grid">
+        <article class="card logo-card" onclick="window.open('anomaly.html','_blank')">
+          <strong>Anomaly Productions</strong>
+          <span>Freelance Production Assistant | Mar 2023–Jan 2025</span>
+          <div class="thumb"><img src="anomaly-productions-logo.png" alt="Anomaly Productions"></div>
+          <a href="anomaly.html" target="_blank" onclick="event.stopPropagation()" style="display:inline-block; margin-top:.75rem; padding:.5rem 1.1rem; border-radius:999px; border:1px solid rgba(27,59,112,.25); font-size:.84rem; color:var(--accent); background:var(--accent-soft); transition:background .2s ease, color .2s ease;" onmouseover="this.style.background='var(--accent)';this.style.color='#fff'" onmouseout="this.style.background='var(--accent-soft)';this.style.color='var(--accent)'">View more</a>
+        </article>
+        <article class="card" onclick="window.open('aob-senior.html','_blank')">
+          <strong>American Outdoor Brands</strong>
+          <span>Senior eCommerce Specialist | Jul 2024–Present</span>
+          <span style="font-size:.86rem; color:#5f6370; display:block; margin-top:.25rem;">eCommerce Specialist | Aug 2021 – Jul 2024</span>
+          <div class="thumb"><img src="AOB_logo.jpg" alt="American Outdoor Brands case study"></div>
+          <a href="aob-senior.html" target="_blank" onclick="event.stopPropagation()" style="display:inline-block; margin-top:.75rem; padding:.5rem 1.1rem; border-radius:999px; border:1px solid rgba(27,59,112,.25); font-size:.84rem; color:var(--accent); background:var(--accent-soft); transition:background .2s ease, color .2s ease;" onmouseover="this.style.background='var(--accent)';this.style.color='#fff'" onmouseout="this.style.background='var(--accent-soft)';this.style.color='var(--accent)'">View more</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-wrap">
     <section class="section" id="podcasts">
       <h2 class="section-title">Skills</h2>
       <p class="subtitle">Proficient in eCommerce platforms, marketing tools, and design software.</p>
@@ -147,23 +262,22 @@
       <h2 class="section-title">Education</h2>
       <div class="essay-grid">
         <div class="essay-item">University of Florida</div>
-        <div class="essay-item">B.S, Advertising with Graphic Design Concentration</div>
-          <div class="essay-item">Cum Laude</div>
-            <div class="essay-item">University Scholars Program</div>
+        <div class="essay-item">B.S., Advertising with Graphic Design Concentration</div>
+        <div style="font-size:.92rem; color:var(--muted); margin-top:.1rem;">Cum Laude</div>
+        <div style="font-size:.92rem; color:var(--muted);">University Scholars Program</div>
       </div>
     </section>
 
     <section class="section" id="speaking">
-      <h2 class="section-title">Activities & Interests</h2>
+      <h2 class="section-title">Activities &amp; Interests</h2>
       <div class="world-map">
         <p>Outside of work, I enjoy surfing, trivia, cooking, ceramics, and learning new skills.</p>
       </div>
-
       <div class="media-grid">
         <article class="media-card"><img src="IMG_3659.jpeg" alt="Surfing"><small>Surfing</small></article>
         <article class="media-card"><img src="trivia.jpg" alt="Trivia"><small>Trivia</small></article>
         <article class="media-card"><img src="IMG_8921.jpeg" alt="Baking"><small>Baking</small></article>
-        <article class="media-card ceramics"><img src="pottery.jpg" alt="Ceramics"><small>Ceramics</small></article>
+        <article class="media-card"><img src="pottery.jpg" alt="Ceramics"><small>Ceramics</small></article>
         <article class="media-card logo-card"><img src="Claude_AI_symbol.svg" alt="Vibecoded"><small>Vibecoding: This Portfolio using Claude AI</small></article>
       </div>
     </section>
@@ -172,9 +286,19 @@
   <footer class="footer" id="contact">
     <div class="site-wrap">
       <div class="logo">SD</div>
-      <p>Dana Point, CA | serenadij24@gmail.com | (850) 797 – 1097</p>
+      <p>Orange County, CA | serenadij24@gmail.com | (850) 797 – 1097</p>
       <small>© 2026 Serena Dijkhuizen · All rights reserved</small>
     </div>
   </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.hero-slide');
+    let idx = 0;
+    setInterval(() => {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 3000);
+  </script>
 </body>
 </html>

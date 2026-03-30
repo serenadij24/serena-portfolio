@@ -2,7 +2,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 
-const port = 3000;
+const port = 3001;
 const root = process.cwd();
 
 function contentType(file){
