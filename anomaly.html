@@ -30,7 +30,7 @@
 
     .intro { padding: 120px 0 115px; }
     .case-title { margin-bottom: 40px; }
-    .stick-to-top { position: sticky; top: 60px; }
+    .stick-to-top { position: static; }
     .stick-to-top p { font-size: 13px; line-height: 1.5; }
     .intro h2 { font-size: 24px; line-height: 29px; font-weight: 400; }
     .case-meta { margin-top: 64px; }
@@ -43,6 +43,20 @@
     .media-block:not(.natural-height) img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
     .media-block.logo-block { display: flex; align-items: center; justify-content: center; padding: 80px 0; background: #fff; border-radius: 5px; }
     .media-block.logo-block img { width: auto; max-width: 60%; border-radius: 0; }
+
+    /* Logo card */
+    .logo-card {
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(29,35,49,.08);
+      box-shadow: 0 8px 24px rgba(15,22,39,0.08);
+      padding: 2.5rem 2rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      margin-left: -18vw;
+      width: calc(100% + 18vw);
+    }
+    .logo-card img { width: 100%; max-width: 520px; height: auto; object-fit: contain; }
 
     .footer-back { border-top: 1px solid rgba(0,0,0,0.12); padding: 60px 0 80px; }
     .footer-back a { font-size: 24px; font-weight: 400; opacity: 0.4; transition: opacity 0.2s; }
@@ -74,28 +88,21 @@
       <div class="columns">
         <div class="col col-3 push-3 case-title">
           <div class="stick-to-top">
-            <p>Production Assistant<br>Anomaly Productions</p>
+            <div class="logo-card">
+              <img src="anomaly-productions-logo.png" alt="Anomaly Productions">
+            </div>
+            <p>Production Assistant<br>Anomaly Productions<br>Mar 2023–Jan 2025</p>
           </div>
         </div>
-        <div class="col col-5">
-          <h2>Supported production operations across a range of projects — coordinating logistics, managing on-set workflows, and ensuring smooth execution from pre-production through delivery.<br><br>
-          Worked closely with production teams to manage scheduling, communicate across departments, and keep projects on track under fast-paced, deadline-driven conditions.</h2>
-          <div class="case-meta">
-            <p>Company — Anomaly Productions</p>
-            <p>Role — Production Assistant</p>
-            <p>Period — Mar 2023–Jan 2025</p>
-          </div>
+        <div class="col col-5" style="padding-left: 3rem;">
+          <h2>I 3D modeled comic book scenes based off of storyboards, as well as many environments for comics. Organized future assets.</h2>
+          <h2 style="margin-top: 1.5rem;">Built 3D printers, post-processed, and painted 3D printed miniatures.</h2>
         </div>
       </div>
     </section>
 
     <section class="blocks">
       <div class="columns">
-        <div class="col col-12">
-          <div class="media-block logo-block">
-            <img src="anomaly-productions-logo.png" alt="Anomaly Productions">
-          </div>
-        </div>
         <div class="col col-6">
           <div class="media-block natural-height" id="img-ref">
             <img src="7017530.jpg" alt="Anomaly Productions">
